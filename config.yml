@@ -1,0 +1,90 @@
+# The IP address that HTTPConsole will listen on. "any" can be used to listen on
+#  any address.
+# The default is 127.0.0.1
+ip-address: 127.0.0.1
+
+# The TCP listening port that HTTPConsole will bind to.
+# The default is 8765.
+port: 8765
+
+# Controls how important a console message must be to be shown.
+# Possible values: severe, warning, info
+# The default is severe, meaning only severe log messages will be visible.
+log-level: severe
+
+# Controls whether messages beginning with "ConsoleCommandSender:" are filtered
+#  out of the console log.
+# The default value is true.
+filter-command-sender: true
+
+# This sets what ip addresses are not allowed to send requests to HTTPConsole.
+# To add more values, just add more "- ipaddress" lines to the list.
+# Add "- any" (no quotes) to the list to block all ip addresses from connecting
+#  to HTTPConsole.
+# Ranges of ip addresses can be set by using two ip addresses seperated by a
+#  hyphen (-), or by using an asterisk (*) in place of any number.
+# Hyphens and asterisks are special characters in yml files so they will have
+#  to be surrounded by quotes (see examples below).
+client-ip-blacklist:
+#   - 192.168.3.2
+#   - "192.168.4.*"
+#   - "192.168.5.1-192.168.6.254"
+#   - any
+
+# This sets what ip addresses are allowed to send requests to HTTPConsole.
+# All ip addresses and ranges that are valid for the blacklist are also valid
+#  for the whitelist.
+client-ip-whitelist:
+#   Example:
+#   - 192.168.1.100
+#   - "192.168.2.*"
+#   - "192.168.0.1-192.168.0.254"
+#   - any
+
+# This changes the order in which the whitelist and blacklist are checked.
+# Possible Values:
+#
+#  "Deny,Allow"
+#   The whitelist is only checked when an ip address matches the blacklist.
+#   If the ip address matches both lists, it will be allowed. If it matches
+#    neither list, it will be allowed.
+#   This behavior matches the Apache "Deny,Allow" Order directive.
+#   This is the default value.
+#
+#  "Allow,Deny"
+#   The blacklist is only checked when an ip address matches the whitelist.
+#   If the ip address matches both lists, it will be denied. If it matches
+#    neither list, it will be denied.
+#   This behavior matches the Apache "Allow,Deny" Order directive.
+#
+white-black-list-order: "Deny,Allow"
+
+# This is a list of the allowed hostnames (domains) that HTTPConsole will
+#  accept requests on. This means that if someone uses
+#  "http://my.domain.com:8765/console?command=stop" to issue the
+#  stop command to your server, and my.domain.com is not listed below, the
+#  connection will be refused.
+# The one exception to the above rule is that If no hostnames are listed than
+#  any hostname will be allowed.
+# This is similar to virtual hosting except that HTTPConsole only uses the
+#  hostname to allow or deny the request.
+# This feature combined with the cross site scripting restrictions in modern
+#  browsers is designed to make it more difficult for unauthorized people
+#  to target your server from client side (browser) scripts. This does not make
+#  it impossible however as they can always create a proxy if they really want
+#  to send requests from the browser.
+# If any hostnames are listed, requests to bare ip addresses will be denied
+#  unless the ip address is 127.0.0.1.
+# An asterisk (*) in the left most label will match any valid label or labels.
+# At the very least one label and a top level domain (com, org, net, etc.) must
+#  be given per hostname.
+allowed-hosts:
+#   - theanticookie.com
+#   - notch.tumblr.com
+#   - "*.minecraft.net"
+
+# Controls whether connection refused log messages are always sent, or only sent
+#  when log-level is set to info.
+# The default value is false. Connection refused messages will only be visible
+#  if the log-level is set to info.
+always-log-refused-connections: false
