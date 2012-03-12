@@ -3,10 +3,8 @@ package org.theanticookie.bukkit.httpconsole;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.command.ConsoleCommandSender;
 import org.bukkit.craftbukkit.CraftServer;
+import org.bukkit.ChatColor;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.InputStreamReader;
 import java.io.Writer;
 import java.io.StringWriter;
 import java.io.IOException;
@@ -92,7 +90,7 @@ public class RequestHandler extends HTTPRequestHandler
 		minecraft_log_handler.flush();
 		minecraft_log_handler.close();
 
-		return command_output.toString();
+		return command_output.toString().replaceAll("(\\[[0-9][0-9]?m)", "");
 	}
 
 	public boolean HandlePath( String path )
