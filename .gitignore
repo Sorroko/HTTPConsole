@@ -12,4 +12,5 @@
 /manifest.mf
 
 # Mac filesystem dust
-.DS_Store
+.DS_Storetarget
+/target
