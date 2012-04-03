@@ -11,8 +11,8 @@
         </sealing>
     </manifest>
     <selectedElements exportClassFiles="true" exportJavaFiles="false" exportOutputFolder="false">
-        <file path="/HTTPConsole/plugin.yml"/>
-        <javaElement handleIdentifier="=HTTPConsole/src"/>
-        <file path="/HTTPConsole/config.yml"/>
+        <javaElement handleIdentifier="=HTTPConsole/src\/main\/java"/>
+        <file path="/HTTPConsole/src/main/resources/config.yml"/>
+        <file path="/HTTPConsole/src/main/resources/plugin.yml"/>
     </selectedElements>
 </jardesc>
