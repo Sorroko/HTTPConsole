@@ -1,5 +1,5 @@
 name: HTTPConsole
 main: org.theanticookie.bukkit.HTTPConsole
 author: ryan7745
-description: Provides access to the console through an HTTP interface.
+description: Provides access to the console through an HTTP interface
 version: 2.2.0
