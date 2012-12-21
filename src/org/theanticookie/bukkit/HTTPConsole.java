@@ -1,15 +1,12 @@
 package org.theanticookie.bukkit;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.logging.Logger;
 import java.util.logging.Level;
 import java.util.List;
 import java.util.regex.Pattern;
-//import java.util.HashMap;
-//import org.bukkit.entity.Player;
-import org.bukkit.configuration.InvalidConfigurationException;
+
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;

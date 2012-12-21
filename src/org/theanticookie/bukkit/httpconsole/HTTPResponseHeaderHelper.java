@@ -50,7 +50,7 @@ public class HTTPResponseHeaderHelper
                 header = String.format( "HTTP/1.0 %d", response_code );
         }
 
-        header = String.format( "%s\r\nConnection: close\r\nServer: Bukkit Minecraft %s %s\r\nContent-Type: text/html\r\nExpires: Sat, 01 Jan 2000 00:00:00 GMT\r\nCache-Control: no-cache, no-store\r\n\r\n", header, HTTPConsole.getPackageName(), HTTPConsole.getVersion() );
+        header = String.format( "%s\r\nConnection: close\r\nServer: Bukkit Minecraft %s %s\r\nContent-Type: text/plain\r\nExpires: Sat, 01 Jan 2000 00:00:00 GMT\r\nCache-Control: no-cache, no-store\r\n\r\n", header, HTTPConsole.getPackageName(), HTTPConsole.getVersion() );
         return header;
     }
 

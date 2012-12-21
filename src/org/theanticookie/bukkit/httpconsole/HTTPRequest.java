@@ -34,7 +34,7 @@ public class HTTPRequest
 
 		// Read the first line. Should be the HTTP request.
 		String line = reader.readLine();
-		
+
 		String[] request_parts = line.split( "\\s+" );
 		if ( request_parts.length < 3 )
 			throw new HTTPRequestException( "Malformed HTTP request" );

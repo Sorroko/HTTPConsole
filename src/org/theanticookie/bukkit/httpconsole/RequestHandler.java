@@ -2,8 +2,7 @@ package org.theanticookie.bukkit.httpconsole;
 
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.command.ConsoleCommandSender;
-import org.bukkit.craftbukkit.CraftServer;
-import org.bukkit.ChatColor;
+import org.bukkit.craftbukkit.v1_4_6.CraftServer;
 
 import java.io.Writer;
 import java.io.StringWriter;
@@ -90,14 +89,12 @@ public class RequestHandler extends HTTPRequestHandler
         minecraft_log_handler.flush();
         minecraft_log_handler.close();
         
-        return command_output.toString().replaceAll("(\\u001B\\[[0-9][0-9]?m)", "");
+        return command_output.toString().replaceAll("\\[m", "").replaceAll("(\\[[0-9][0-9]?;[0-9][0-9]?m)", "");
     }
 
     public boolean HandlePath( String path )
     {
-        if ( path.equalsIgnoreCase( "/console" ) )
-            return true;
-        if ( path.equalsIgnoreCase( "/" ) )
+        if ( path.equalsIgnoreCase( "/console" ) || path.equalsIgnoreCase( "/" ) )
             return true;
 
         return false;
@@ -135,7 +132,7 @@ public class RequestHandler extends HTTPRequestHandler
 
         if (output.equals("")) {
             response_code = 404;
-            output = "<h1>Oops! You did not define a command</h1><h3>Or something went wrong!</h3>";
+            output = "Error: Invalid parameters";
         }
 
 
