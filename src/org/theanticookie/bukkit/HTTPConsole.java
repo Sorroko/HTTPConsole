@@ -193,7 +193,7 @@ public class HTTPConsole extends JavaPlugin
 			}
 			}
 
-			http.addRequestHandler( new RequestHandler( this ) );
+			http.addRequestHandler( new RequestHandler() );
 			http.setAlwaysLogRefusedConnections( config.getBoolean( "always-log-refused-connections", false ) );
 			http.start( config.getString( "ip-address", "127.0.0.1" ), config.getInt( "port", 8765 ) );
 		}

@@ -1,8 +1,6 @@
 package org.theanticookie.bukkit.httpconsole;
 
-import org.bukkit.plugin.java.JavaPlugin;
-import org.bukkit.command.ConsoleCommandSender;
-import org.bukkit.craftbukkit.v1_4_6.CraftServer;
+import org.bukkit.Bukkit;
 
 import java.io.Writer;
 import java.io.StringWriter;
@@ -65,13 +63,8 @@ public class RequestHandler extends HTTPRequestHandler
         }
     }
 
-    private CraftServer server;
-    private ConsoleCommandSender sender;
-
-    public RequestHandler( final JavaPlugin plugin )
+    public RequestHandler(  )
     {
-        this.server = (CraftServer)plugin.getServer();
-        this.sender = server.getConsoleSender();
     }
 
     private String executeConsoleCommand( String command )
@@ -79,11 +72,11 @@ public class RequestHandler extends HTTPRequestHandler
         log( "Executing \"%s\"", command );
 
         StringWriter command_output = new StringWriter();
-        Logger minecraft_logger = Logger.getLogger( "Minecraft" );
+        Logger minecraft_logger = Bukkit.getServer().getLogger();
         MinecraftLogHandler minecraft_log_handler = new MinecraftLogHandler( command_output );
 
         minecraft_logger.addHandler( minecraft_log_handler );
-        server.dispatchCommand( sender, command );
+        Bukkit.dispatchCommand(Bukkit.getConsoleSender(), command);
         minecraft_logger.removeHandler( minecraft_log_handler );
 
         minecraft_log_handler.flush();
