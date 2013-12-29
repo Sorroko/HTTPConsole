@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.util.logging.Logger;
 import java.util.logging.Handler;
 import java.util.logging.LogRecord;
+
 import org.json.simple.JSONObject;
 
 /**
@@ -18,50 +19,6 @@ import org.json.simple.JSONObject;
  */
 public class RequestHandler extends HTTPRequestHandler
 {
-    private class MinecraftLogHandler extends Handler
-    {
-        private final Writer writer;
-        MinecraftLogHandler( final Writer writer )
-        {
-            this.writer = writer;
-        }
-
-        public void publish( LogRecord record )
-        {
-            try
-            {
-                writer.write( String.format( "%s\n", record.getMessage() ) );
-            }
-            catch( IOException e )
-            {
-                // Silently fail.
-            }
-        }
-
-        public void close()
-        {
-            try
-            {
-                writer.close();
-            }
-            catch( IOException e )
-            {
-                // Silently fail.
-            }
-        }
-
-        public void flush()
-        {
-            try
-            {
-                writer.flush();
-            }
-            catch( IOException e )
-            {
-                // Silently fail.
-            }
-        }
-    }
 
     public RequestHandler(  )
     {
@@ -70,19 +27,12 @@ public class RequestHandler extends HTTPRequestHandler
     private String executeConsoleCommand( String command )
     {
         log( "Executing \"%s\"", command );
-
         StringWriter command_output = new StringWriter();
-        Logger minecraft_logger = Bukkit.getServer().getLogger();
-        MinecraftLogHandler minecraft_log_handler = new MinecraftLogHandler( command_output );
-
-        minecraft_logger.addHandler( minecraft_log_handler );
-        Bukkit.dispatchCommand(Bukkit.getConsoleSender(), command);
-        minecraft_logger.removeHandler( minecraft_log_handler );
-
-        minecraft_log_handler.flush();
-        minecraft_log_handler.close();
+        HTTPCommandSender sender = new HTTPCommandSender();
         
-        return command_output.toString().replaceAll("\\[m", "").replaceAll("(\\[[0-9][0-9]?;[0-9][0-9]?m)", "");
+        Bukkit.getServer().dispatchCommand(sender, command);
+
+        return sender.getOutput().replaceAll("\\[m", "").replaceAll("(\\[[0-9][0-9]?;[0-9][0-9]?m)", "");
     }
 
     public boolean HandlePath( String path )
