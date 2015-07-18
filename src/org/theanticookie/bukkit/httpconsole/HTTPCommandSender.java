@@ -1,6 +1,8 @@
 package org.theanticookie.bukkit.httpconsole;
 
-import org.bukkit.craftbukkit.v1_7_R1.command.CraftConsoleCommandSender;
+import org.bukkit.craftbukkit.v1_8_R3.command.CraftConsoleCommandSender;
+
+
 
 public class HTTPCommandSender extends CraftConsoleCommandSender {
 	
