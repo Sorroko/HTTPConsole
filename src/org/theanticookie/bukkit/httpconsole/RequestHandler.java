@@ -2,12 +2,7 @@ package org.theanticookie.bukkit.httpconsole;
 
 import org.bukkit.Bukkit;
 
-import java.io.Writer;
 import java.io.StringWriter;
-import java.io.IOException;
-import java.util.logging.Logger;
-import java.util.logging.Handler;
-import java.util.logging.LogRecord;
 
 import org.json.simple.JSONObject;
 
@@ -75,7 +70,7 @@ public class RequestHandler extends HTTPRequestHandler
 
         if (output.equals("")) {
             response_code = 404;
-            output = "Error: Invalid parameters";
+            output = "No output"; //Error: Invalid parameters
         }
 
 
